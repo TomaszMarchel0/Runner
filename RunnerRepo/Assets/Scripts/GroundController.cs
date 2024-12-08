@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GroundController : MonoBehaviour
 {
+    public bool startMove;
+
     public float moveSpeed; // zmienna okreslajaca z jaka predkoscia bedzie poruszac sie teren
 
     public float incrementSpeed;
@@ -18,9 +20,12 @@ public class GroundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveSpeed = moveSpeed + incrementSpeed * Time.deltaTime;
+        if (startMove == true)
+        {
+            moveSpeed = moveSpeed + incrementSpeed * Time.deltaTime;
 
-        Vector3 moveVector = new Vector3(0, 0, -1); //wektor poruszania siê
-        transform.Translate(moveVector * Time.deltaTime * moveSpeed); //przesuwanie obiektu po osi Z
+            Vector3 moveVector = new Vector3(0, 0, -1); //wektor poruszania siê
+            transform.Translate(moveVector * Time.deltaTime * moveSpeed); //przesuwanie obiektu po osi Z
+        }
     }
 }

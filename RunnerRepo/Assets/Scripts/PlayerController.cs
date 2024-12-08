@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource soundTrackAudioSource;
     public AudioClip backgroundMusic;
 
+    public int level = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,26 +34,55 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.A)) //Jezeli wcisniemy przycisk A
+        if (level == 0)
         {
-            if (transform.position.x > -4f) // Jezeli pozycja gracza w osi X jest wiêksza od -4 to wykonaj to co wewnatrz
+            if (Input.GetKey(KeyCode.A)) //Jezeli wcisniemy przycisk A
             {
-                //Wykonuje sie to jezeli warunek jest spe³niony
-                transform.Translate(Vector3.left * Time.deltaTime * moveSpeed); //transform.Translate przesuwa obiekt o Vector
+                if (transform.position.x > -4f) // Jezeli pozycja gracza w osi X jest wiêksza od -4 to wykonaj to co wewnatrz     || oznacza "lub"
+                {
+                    //Wykonuje sie to jezeli warunek jest spe³niony
+                    transform.Translate(Vector3.left * Time.deltaTime * moveSpeed); //transform.Translate przesuwa obiekt o Vector
+                }
+                else // Jezeli warunek nie jest spelniony
+                {
+                    // Tutaj wykonuja sie te rzeczy
+                }
             }
-            else // Jezeli warunek nie jest spelniony
+
+            if (Input.GetKey(KeyCode.D))
             {
-                // Tutaj wykonuja sie te rzeczy
+                if (transform.position.x < 4f)
+                {
+                    transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
+                }
             }
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (level == 1)
         {
-            if (transform.position.x < 4f)
+            if (Input.GetKey(KeyCode.A)) //Jezeli wcisniemy przycisk A
             {
-                transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
+                if (transform.position.x > -64f) // Jezeli pozycja gracza w osi X jest wiêksza od -4 to wykonaj to co wewnatrz     || oznacza "lub"
+                {
+                    //Wykonuje sie to jezeli warunek jest spe³niony
+                    transform.Translate(Vector3.left * Time.deltaTime * moveSpeed); //transform.Translate przesuwa obiekt o Vector
+                }
+                else // Jezeli warunek nie jest spelniony
+                {
+                    // Tutaj wykonuja sie te rzeczy
+                }
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                if (transform.position.x < -56f)
+                {
+                    transform.Translate(Vector3.right * Time.deltaTime * moveSpeed);
+                }
             }
         }
+
+
 
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
